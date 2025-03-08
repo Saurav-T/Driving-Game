@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>VIBE</title>
+    <title>DRIVE</title>
     <link rel="icon" href="icon.png">
     <link
       rel="stylesheet"
@@ -228,7 +228,7 @@
       </div>
 
       <div id="home">
-        <h1>VIBE</h1>
+        <h1>DRIVE</h1>
         <p id="text"></p>
 
         <div id="highscore"></div>
@@ -725,10 +725,12 @@
           score.innerText = (scoreVal | 0).pad(8);
           tacho.innerText = speed | 0;
 
-          let cT = new Date(timestamp() - start);
-          lap.innerText = `${cT.getMinutes()}'${cT.getSeconds().pad(2)}"${cT
-            .getMilliseconds()
-            .pad(3)}`;
+          let elapsedTime = new Date(timestamp() - start);
+          let minutes = Math.floor(elapsedTime / 60000); // Convert to minutes
+          let seconds = elapsedTime.getSeconds();       // Get the seconds part
+          let milliseconds = elapsedTime.getMilliseconds(); // Get milliseconds
+
+          lap.innerText = `${minutes}'${String(seconds).padStart(2, '0')}"${String(milliseconds).padStart(3, '0')}`;
         }
 
         // sound
